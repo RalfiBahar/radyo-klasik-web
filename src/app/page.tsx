@@ -1,8 +1,13 @@
+"use client";
 import Image from "next/image";
 import Head from "next/head";
-import { Header, Player } from "./components";
+import { Header, NowPlaying, Player, ChatPanel } from "./components";
+import { useState } from "react";
 
 export default function Home() {
+  const [isChatOpen, setChatOpen] = useState<boolean>(false);
+  const toggleChat = (): void => setChatOpen(!isChatOpen);
+
   return (
     <div className="min-h-screen flex flex-col">
       <Head>
@@ -34,7 +39,7 @@ export default function Home() {
       </header>
 
       <main className="flex-grow bg-green-500">
-        <div className="flex flex-row justify-center items-center h-full bg-black">
+        <div className="flex flex-row justify-center items-center h-full">
           <div className="flex flex-row h-full w-full">
             <div className="flex flex-col justify-between h-full">
               <div className="w-48">
@@ -69,17 +74,13 @@ export default function Home() {
         </div>
       </main>
 
-      <footer className="fixed bottom-0 left-0 right-0 bg-white px-80 py-8">
+      <footer className="fixed bottom-0 left-0 right-0 bg-white px-80 py-8 z-10">
         <div className="flex items-center justify-between">
           <div className="flex items-center">
             <Player />
-            <p>
-              Now Playing:
-              <br />
-              Radyo Klasik Online - "Best Known Classical Pieces"
-            </p>
+            <NowPlaying />
           </div>
-          <button>
+          <button onClick={toggleChat}>
             <svg
               className="w-10 h-10"
               fill="currentColor"
@@ -95,6 +96,7 @@ export default function Home() {
           </button>
         </div>
       </footer>
+      <ChatPanel isOpen={isChatOpen} onClose={() => setChatOpen(false)} />
     </div>
   );
 }
