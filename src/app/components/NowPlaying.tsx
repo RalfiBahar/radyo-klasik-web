@@ -16,7 +16,8 @@ const NowPlayingInfo: React.FC<NowPlayingInfoProps> = ({ ...props }) => {
           Now Playing:
           <br />
           {nowPlaying.artist}
-          <br />"{nowPlaying.title}"
+          <br />
+          &quot;{nowPlaying.title}&quot;
         </p>
       ) : (
         <p {...props}>
@@ -24,7 +25,7 @@ const NowPlayingInfo: React.FC<NowPlayingInfoProps> = ({ ...props }) => {
           <br />
           Radyo Klasik Online
           <br />
-          "Classical Music for Relaxing"
+          &quot;Classical Music for Relaxing&quot;
         </p>
       )}
     </>
