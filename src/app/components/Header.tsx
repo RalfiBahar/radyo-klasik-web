@@ -10,7 +10,7 @@ const Header = () => {
           alt="Logo"
           width={100}
           height={50}
-          className="md:w-[150px] md:h-[50px] lg:w-[150px] lg:h-[50px]"
+          className="md:w-[170px] md:h-[60px] lg:w-[170px] lg:h-[60px]"
           style={{
             objectFit: "contain",
             objectPosition: "left",

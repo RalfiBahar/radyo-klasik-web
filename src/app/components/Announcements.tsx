@@ -15,7 +15,7 @@ const Announcements = () => {
   return (
     <>
       {announcement && (
-        <div className="text-center md:text-left w-40">
+        <div className="text-center md:text-left w-60">
           <h2 className="text-lg font-bold">ANNOUNCEMENTS</h2>
           <p className="text-sm mt-4">{announcement}</p>
         </div>

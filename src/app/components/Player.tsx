@@ -10,6 +10,7 @@ interface PlayerProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   height?: number;
   audioUrl?: string;
   isRecording?: boolean;
+  className?: string;
 }
 
 const Player: React.FC<PlayerProps> = ({
@@ -17,6 +18,7 @@ const Player: React.FC<PlayerProps> = ({
   height = 100,
   audioUrl = "https://stream.radiojar.com/bw66d94ksg8uv",
   isRecording = false,
+  className = "",
   ...props
 }) => {
   const { isPlaying, setIsPlaying } = useNowPlaying();
@@ -76,7 +78,7 @@ const Player: React.FC<PlayerProps> = ({
   };
 
   return (
-    <div className="flex flex-col items-center w-full">
+    <div className={`flex flex-col items-center w-full ${className}`}>
       {isRecording && (
         <ProgressBar
           progress={progress}

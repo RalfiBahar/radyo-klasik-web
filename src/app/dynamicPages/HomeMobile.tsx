@@ -52,9 +52,13 @@ const HomeMobile: React.FC = () => {
         />
 
         <div className="bg-white rounded-t-3xl fixed bottom-0 h-1/3 w-full">
-          <div className="flex flex-col items-center justify-center p-4">
-            <Player width={width * 0.15} height={width * 0.15} />
-            <NowPlaying className="text-center mt-2" />
+          <div className="flex flex-row items-center justify-center p-4">
+            <Player
+              width={width * 0.15}
+              height={width * 0.15}
+              className="w-auto"
+            />
+            <NowPlaying className="text-left m-3 w-3/4" />
           </div>
         </div>
       </main>
