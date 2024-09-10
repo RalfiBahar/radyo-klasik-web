@@ -19,7 +19,7 @@ const Clock: React.FC = () => {
     return () => clearInterval(intervalId);
   }, []);
 
-  return <p className="text-lg">{time}</p>;
+  return <p className="text-2xl">{time}</p>;
 };
 
 export default Clock;
