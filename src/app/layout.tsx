@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import "./fonts.css";
+//import "./fonts.css";
+import { Questrial } from "next/font/google";
+import { RecordingsProvider } from "./context/RecordingsContext";
+const questrial = Questrial({ subsets: ["latin"], weight: "400" });
 
 export const metadata: Metadata = {
   title: "Radio Klasik",
@@ -13,8 +16,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body>{children}</body>
-    </html>
+    <RecordingsProvider>
+      <html lang="en">
+        <body className={questrial.className}>{children}</body>
+      </html>
+    </RecordingsProvider>
   );
 }

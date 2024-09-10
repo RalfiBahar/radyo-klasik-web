@@ -1,4 +1,6 @@
-import { useState, useEffect } from "react";
+"use client";
+import { useState, useEffect, useRef } from "react";
+import Image from "next/image";
 
 export interface NowPlaying {
   album: string;
@@ -9,6 +11,7 @@ export interface NowPlaying {
 
 export const useNowPlaying = () => {
   const [nowPlaying, setNowPlaying] = useState<NowPlaying | null>(null);
+  const [isPlaying, setIsPlaying] = useState<boolean>(false);
 
   useEffect(() => {
     const fetchNowPlaying = async () => {
@@ -29,5 +32,5 @@ export const useNowPlaying = () => {
     return () => clearInterval(interval);
   }, []);
 
-  return nowPlaying;
+  return { nowPlaying, isPlaying, setIsPlaying };
 };

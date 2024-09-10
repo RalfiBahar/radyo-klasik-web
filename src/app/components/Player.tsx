@@ -1,18 +1,59 @@
 "use client";
-import React, { useState, useRef, useEffect } from "react";
 
-const Player: React.FC = () => {
-  const [isPlaying, setIsPlaying] = useState<boolean>(false);
+import React, { useRef, useEffect, useState } from "react";
+import Image from "next/image";
+import { useNowPlaying } from "../hooks/useNowPlaying";
+import ProgressBar from "./ProgressBar";
+
+interface PlayerProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  width?: number;
+  height?: number;
+  audioUrl?: string;
+  isRecording?: boolean;
+}
+
+const Player: React.FC<PlayerProps> = ({
+  width = 100,
+  height = 100,
+  audioUrl = "https://stream.radiojar.com/bw66d94ksg8uv",
+  isRecording = false,
+  ...props
+}) => {
+  const { isPlaying, setIsPlaying } = useNowPlaying();
   const audioRef = useRef<HTMLAudioElement | null>(null);
+  const [progress, setProgress] = useState(0);
+  const [duration, setDuration] = useState(0);
 
   useEffect(() => {
-    audioRef.current = new Audio("http://stream.radiojar.com/bw66d94ksg8uv");
-    return () => {
+    audioRef.current = new Audio(audioUrl);
+
+    const handlePlay = () => setIsPlaying(true);
+    const handlePause = () => setIsPlaying(false);
+
+    const handleTimeUpdate = () => {
       if (audioRef.current) {
-        audioRef.current.pause();
+        setProgress(audioRef.current.currentTime);
+        setDuration(audioRef.current.duration);
       }
     };
-  }, []);
+
+    const audio = audioRef.current;
+
+    if (audio) {
+      audio.addEventListener("play", handlePlay);
+      audio.addEventListener("pause", handlePause);
+      audio.addEventListener("timeupdate", handleTimeUpdate);
+    }
+
+    return () => {
+      if (audio) {
+        audio.removeEventListener("play", handlePlay);
+        audio.removeEventListener("pause", handlePause);
+        audio.removeEventListener("timeupdate", handleTimeUpdate);
+        audio.pause();
+      }
+    };
+  }, [audioUrl, setIsPlaying]);
 
   const togglePlay = (): void => {
     if (!audioRef.current) return;
@@ -24,32 +65,43 @@ const Player: React.FC = () => {
         console.error("Error playing audio:", error);
       });
     }
-    setIsPlaying(!isPlaying);
+  };
+
+  const handleSliderChange = (event: Event, value: number | number[]) => {
+    if (audioRef.current) {
+      const newValue = Array.isArray(value) ? value[0] : value;
+      audioRef.current.currentTime = newValue;
+      setProgress(newValue);
+    }
   };
 
   return (
-    <button onClick={togglePlay} className="mr-4">
-      <svg
-        className="w-12 h-12"
-        fill="currentColor"
-        viewBox="0 0 20 20"
-        xmlns="http://www.w3.org/2000/svg"
-      >
+    <div className="flex flex-col items-center w-full">
+      {isRecording && (
+        <ProgressBar
+          progress={progress}
+          duration={duration}
+          onSliderChange={handleSliderChange}
+        />
+      )}
+      <button onClick={togglePlay} {...props}>
         {isPlaying ? (
-          <path
-            fillRule="evenodd"
-            d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM7 8a1 1 0 012 0v4a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v4a1 1 0 102 0V8a1 1 0 00-1-1z"
-            clipRule="evenodd"
+          <Image
+            src="/pause.svg"
+            alt="Pause Icon"
+            width={width}
+            height={height}
           />
         ) : (
-          <path
-            fillRule="evenodd"
-            d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"
-            clipRule="evenodd"
+          <Image
+            src="/play.svg"
+            alt="Play Icon"
+            width={width}
+            height={height}
           />
         )}
-      </svg>
-    </button>
+      </button>
+    </div>
   );
 };
 

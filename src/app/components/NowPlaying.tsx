@@ -3,19 +3,29 @@
 import React from "react";
 import { useNowPlaying } from "../hooks/useNowPlaying";
 
-const NowPlayingInfo: React.FC = () => {
-  const nowPlaying = useNowPlaying();
+interface NowPlayingInfoProps
+  extends React.HTMLAttributes<HTMLParagraphElement> {}
+
+const NowPlayingInfo: React.FC<NowPlayingInfoProps> = ({ ...props }) => {
+  const { nowPlaying } = useNowPlaying();
 
   return (
     <>
       {nowPlaying ? (
-        <p>
+        <p {...props}>
           Now Playing:
           <br />
-          {nowPlaying.artist} - "{nowPlaying.title}"
+          {nowPlaying.artist}
+          <br />"{nowPlaying.title}"
         </p>
       ) : (
-        <p>Loading...</p>
+        <p {...props}>
+          Now Playing:
+          <br />
+          Radyo Klasik Online
+          <br />
+          "Classical Music for Relaxing"
+        </p>
       )}
     </>
   );
