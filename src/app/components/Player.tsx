@@ -2,7 +2,7 @@
 
 import React, { useRef, useEffect, useState } from "react";
 import Image from "next/image";
-import { useNowPlaying } from "../hooks/useNowPlaying";
+import { useNowPlayingContext } from "../context/NowPlayingContext";
 import ProgressBar from "./ProgressBar";
 
 interface PlayerProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -21,7 +21,7 @@ const Player: React.FC<PlayerProps> = ({
   className = "",
   ...props
 }) => {
-  const { isPlaying, setIsPlaying } = useNowPlaying();
+  const { isPlaying, setIsPlaying } = useNowPlayingContext();
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const [progress, setProgress] = useState(0);
   const [duration, setDuration] = useState(0);
@@ -78,7 +78,7 @@ const Player: React.FC<PlayerProps> = ({
   };
 
   return (
-    <div className={`flex flex-col items-center w-full ${className}`}>
+    <div className={`flex flex-col items-center ${className}`}>
       {isRecording && (
         <ProgressBar
           progress={progress}

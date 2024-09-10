@@ -34,7 +34,6 @@ export const RecordingsProvider = ({ children }: { children: ReactNode }) => {
         setRecordings(data.recordings);
         setRecordingsLoaded(true);
       }
-      console.log("REC", recordings);
     } catch (error) {
       console.error("Failed to fetch recordings:", error);
       setRecordingsLoaded(false);

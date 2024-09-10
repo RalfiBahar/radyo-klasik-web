@@ -13,7 +13,6 @@ import {
   Player,
   RecordingItem,
 } from "../components";
-import { useNowPlaying } from "../hooks/useNowPlaying";
 import { useWindowSize } from "../hooks/useWindowSize";
 import { useRecordings } from "../context/RecordingsContext";
 import { BackButton } from "../components";

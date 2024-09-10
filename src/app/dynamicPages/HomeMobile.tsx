@@ -10,12 +10,12 @@ import {
   NowPlaying,
   Player,
 } from "../components";
-import { useNowPlaying } from "../hooks/useNowPlaying";
+import { useNowPlayingContext } from "../context/NowPlayingContext";
 import { useWindowSize } from "../hooks/useWindowSize";
 import Link from "next/link";
 
 const HomeMobile: React.FC = () => {
-  const { nowPlaying } = useNowPlaying();
+  const { nowPlaying } = useNowPlayingContext();
   const { width, height } = useWindowSize();
 
   return (

@@ -9,10 +9,15 @@ import {
   NowPlaying,
   Player,
 } from "../components";
-import { useNowPlaying } from "../hooks/useNowPlaying";
+import { useNowPlayingContext } from "../context/NowPlayingContext";
+import { useEffect } from "react";
 
 export default function Home() {
-  const { isPlaying, nowPlaying } = useNowPlaying();
+  const { isPlaying, nowPlaying } = useNowPlayingContext();
+
+  useEffect(() => {
+    console.log(isPlaying);
+  }, [isPlaying]);
 
   return (
     <div
@@ -25,7 +30,6 @@ export default function Home() {
     >
       {/* Header */}
       <Header />
-
       {/* Main Content */}
       <main className="flex-grow flex flex-col md:flex-row items-center px-60 py-8">
         {/* Announcements Section */}
@@ -33,13 +37,15 @@ export default function Home() {
           <Announcements />
 
           {/* Live Broadcast Information */}
-          <div className="border-2 border-black p-4 mt-6 inline-block w-48">
-            <h3 className="text-2xl font-bold">CANLI YAYIN</h3>
+          <div className="border-2 border-black p-4 mt-6 inline-block w-32 md:w-40 lg:w-48">
+            <h3 className="text-base md:text-lg lg:text-2xl font-bold">
+              CANLI YAYIN
+            </h3>
           </div>
-          <p className="mt-2 text-5xl font-bold">
+          <p className="mt-2 text-3xl md:text-4xl lg:text-5xl font-bold">
             MORNING <br /> DELIGHT
           </p>
-          <p className="mt-1 text-lg">
+          <p className="mt-1 text-base md:text-lg">
             HER PAZAR SABAHI <br /> 10:00-12:00
           </p>
         </div>
@@ -59,7 +65,7 @@ export default function Home() {
       {/* Now Playing Section */}
       <footer className="bg-white py-4 px-64 flex justify-between items-center">
         <div className="flex items-center">
-          <Player className="mx-4 w-auto" />
+          <Player className="mx-4" />
           <NowPlaying />
         </div>
 
