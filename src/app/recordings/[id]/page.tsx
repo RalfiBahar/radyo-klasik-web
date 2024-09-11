@@ -12,6 +12,7 @@ import {
 } from "@/app/components";
 import { useWindowSize } from "@/app/hooks/useWindowSize";
 import { useNowPlayingContext } from "@/app/context/NowPlayingContext";
+import LoadingScreenMobile from "@/app/dynamicPages/LoadingScreenMobile";
 //import { usePlayback } from "../../context/PlaybackContext";
 
 const Recording: React.FC = () => {
@@ -41,7 +42,11 @@ const Recording: React.FC = () => {
   }, []);
 
   if (!recording || !token) {
-    return <p>Loading...</p>;
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <LoadingScreenMobile />
+      </div>
+    );
   }
 
   const songData = {
