@@ -54,7 +54,7 @@ export default function Home() {
           className="m-20 mt-8 md:mt-0"
         />
 
-        <div className="absolute right-64 bottom-40">
+        <div className="absolute right-52 bottom-40">
           <Clock />
         </div>
         <div className="absolute right-64 top-32">
@@ -63,7 +63,7 @@ export default function Home() {
       </main>
 
       {/* Now Playing Section */}
-      <footer className="bg-white py-4 px-64 flex justify-between items-center">
+      <footer className="bg-white py-4 px-52 flex justify-between items-center">
         <div className="flex items-center">
           <Player className="mx-4" />
           <NowPlaying />

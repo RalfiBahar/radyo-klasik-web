@@ -16,6 +16,7 @@ import {
 import { useWindowSize } from "../hooks/useWindowSize";
 import { useRecordings } from "../context/RecordingsContext";
 import { BackButton } from "../components";
+import LoadingScreenMobile from "./LoadingScreenMobile";
 
 const PastProgramsMobile: React.FC = () => {
   const { width, height } = useWindowSize();
@@ -28,7 +29,7 @@ const PastProgramsMobile: React.FC = () => {
   if (!recordingsLoaded && recordings.length === 0) {
     return (
       <div className="flex justify-center items-center h-screen">
-        <div className="loader" />
+        <LoadingScreenMobile />
       </div>
     );
   }

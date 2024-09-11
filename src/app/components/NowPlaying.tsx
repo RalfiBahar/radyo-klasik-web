@@ -10,10 +10,10 @@ const NowPlayingInfo: React.FC<NowPlayingInfoProps> = ({ ...props }) => {
   const { nowPlaying } = useNowPlayingContext();
 
   return (
-    <div className="w-[26rem]">
+    <div className="w-[26rem] m-4">
       {nowPlaying ? (
         <div className="flex flex-col">
-          <p className="font-extrabold"> Now Playing:</p>
+          <p className="font-black"> Now Playing:</p>
           <p {...props}>
             {nowPlaying.artist}
             <br />
@@ -22,7 +22,7 @@ const NowPlayingInfo: React.FC<NowPlayingInfoProps> = ({ ...props }) => {
         </div>
       ) : (
         <div className="flex flex-col">
-          <p className="font-bold"> Now Playing:</p>
+          <p className="font-black"> Now Playing:</p>
           <p {...props}>
             Radyo Klasik Online
             <br />

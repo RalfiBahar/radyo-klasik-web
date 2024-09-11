@@ -58,7 +58,7 @@ const HomeMobile: React.FC = () => {
               height={width * 0.15}
               className="w-auto"
             />
-            <NowPlaying className="text-left m-3 w-3/4" />
+            <NowPlaying className="text-left" />
           </div>
         </div>
       </main>
