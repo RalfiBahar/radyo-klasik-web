@@ -20,6 +20,7 @@ const useChat = () => {
       );
       if (response.ok) {
         const data = await response.json();
+        console.log(data);
         setMessages(data);
       } else {
         setError("Failed to fetch messages.");
