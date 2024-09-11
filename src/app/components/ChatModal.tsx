@@ -1,20 +1,24 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Cookies from "js-cookie";
 import useChat from "../hooks/useChat";
 import Image from "next/image";
 
-const ChatModal: React.FC = () => {
+interface ChatModalProps {
+  onFooter?: boolean;
+}
+
+const ChatModal: React.FC<ChatModalProps> = ({ onFooter = false }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [messageContent, setMessageContent] = useState("");
   const [isNameSet, setIsNameSet] = useState(false);
+  const messagesEndRef = useRef<HTMLDivElement | null>(null);
 
   const { messages, fetchMessages, sendMessage, error } = useChat();
 
   useEffect(() => {
-    // Fetch messages on component load
     if (isNameSet) {
       fetchMessages();
     }
@@ -29,7 +33,7 @@ const ChatModal: React.FC = () => {
   const handleSendMessage = () => {
     if (messageContent.trim()) {
       sendMessage(messageContent);
-      setMessageContent(""); // Clear input
+      setMessageContent(""); // Clear input after sending
     }
   };
 
@@ -37,11 +41,33 @@ const ChatModal: React.FC = () => {
     setIsOpen(!isOpen);
   };
 
+  const scrollToBottom = () => {
+    if (messagesEndRef.current) {
+      messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
+  useEffect(() => {
+    if (messages && Array.isArray(messages) && messages.length > 0) {
+      scrollToBottom(); // Scroll to the bottom whenever messages change
+    }
+  }, [messages]);
+
   return (
     <>
-      <div onClick={toggleModal} className="cursor-pointer mx-3">
-        <Image src="/chat.svg" alt="Chat Icon" width={50} height={50} />
-      </div>
+      {!onFooter ? (
+        <div onClick={toggleModal} className="cursor-pointer mx-3">
+          <Image src="/chat.svg" alt="Chat Icon" width={50} height={50} />
+        </div>
+      ) : (
+        <button
+          onClick={toggleModal}
+          className={`p-8 flex justify-center items-center flex-col transition-transform duration-200 hover:opacity-70`}
+        >
+          <Image src="/chat.svg" alt="Chat Icon" width={50} height={50} />
+          <p>Chat</p>
+        </button>
+      )}
 
       {isOpen && (
         <div
@@ -51,6 +77,7 @@ const ChatModal: React.FC = () => {
           <div
             className="bg-white p-8 rounded-lg shadow-lg relative"
             onClick={(e) => e.stopPropagation()}
+            style={{ width: onFooter ? "80%" : "60%" }}
           >
             <button
               onClick={toggleModal}
@@ -89,12 +116,28 @@ const ChatModal: React.FC = () => {
                 <h2 className="text-2xl font-bold mb-4">Chat Room</h2>
 
                 {/* Messages */}
-                <div className="mb-4 h-64 overflow-y-auto border p-4 rounded">
-                  {messages.length > 0 ? (
-                    messages.map((msg) => (
+                <div
+                  className="mb-4 h-64 overflow-y-auto border p-4 rounded"
+                  style={{ maxHeight: "400px" }} // Set a height to make it scrollable
+                >
+                  {Array.isArray(messages) && messages.length > 0 ? (
+                    messages.map((msg: any) => (
                       <div key={msg.id} className="text-left mb-2">
-                        <strong>{msg.sender}:</strong> {msg.message}
-                        <br />
+                        <div className="flex items-start">
+                          {msg.admin ? (
+                            <Image
+                              src="/greenicon.svg"
+                              width={20}
+                              height={20}
+                              alt="Admin Logo"
+                              className="mr-2"
+                            />
+                          ) : null}
+                          <strong className="mr-2">{msg.sender}:</strong>
+
+                          <p>{msg.message}</p>
+                        </div>
+
                         <small>
                           {new Date(msg.timestamp).toLocaleString()}
                         </small>
@@ -103,6 +146,7 @@ const ChatModal: React.FC = () => {
                   ) : (
                     <p>No messages yet</p>
                   )}
+                  <div ref={messagesEndRef}></div> {/* Scroll target */}
                 </div>
 
                 {/* Error display */}

@@ -3,6 +3,7 @@
 import React from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import { useNowPlayingContext } from "../context/NowPlayingContext";
 
 interface BackButtonProps {
   onClick?: () => void;
@@ -11,11 +12,13 @@ interface BackButtonProps {
 
 const BackButton: React.FC<BackButtonProps> = ({ onClick, href }) => {
   const router = useRouter();
+  const { resetTrack } = useNowPlayingContext();
 
   const handleBackClick = () => {
     if (onClick) {
       onClick();
     } else {
+      resetTrack();
       router.push(href ? href : "/recordings");
     }
   };

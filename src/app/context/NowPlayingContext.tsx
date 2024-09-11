@@ -12,6 +12,7 @@ interface NowPlayingContextProps {
   nowPlaying: NowPlaying | null;
   isPlaying: boolean;
   setIsPlaying: (isPlaying: boolean) => void;
+  resetTrack: () => void;
 }
 
 const NowPlayingContext = createContext<NowPlayingContextProps | undefined>(
@@ -23,6 +24,10 @@ export const NowPlayingProvider: React.FC<{ children: React.ReactNode }> = ({
 }) => {
   const [nowPlaying, setNowPlaying] = useState<NowPlaying | null>(null);
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
+
+  const resetTrack = () => {
+    setIsPlaying(false);
+  };
 
   useEffect(() => {
     const fetchNowPlaying = async () => {
@@ -44,7 +49,9 @@ export const NowPlayingProvider: React.FC<{ children: React.ReactNode }> = ({
   }, []);
 
   return (
-    <NowPlayingContext.Provider value={{ nowPlaying, isPlaying, setIsPlaying }}>
+    <NowPlayingContext.Provider
+      value={{ nowPlaying, isPlaying, setIsPlaying, resetTrack }}
+    >
       {children}
     </NowPlayingContext.Provider>
   );

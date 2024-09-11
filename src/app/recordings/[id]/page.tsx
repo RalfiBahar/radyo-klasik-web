@@ -11,6 +11,7 @@ import {
   MobileFooter,
 } from "@/app/components";
 import { useWindowSize } from "@/app/hooks/useWindowSize";
+import { useNowPlayingContext } from "@/app/context/NowPlayingContext";
 //import { usePlayback } from "../../context/PlaybackContext";
 
 const Recording: React.FC = () => {
@@ -20,6 +21,7 @@ const Recording: React.FC = () => {
   const { recordings, fetchRecordings } = useRecordings();
   const [token, setToken] = useState<string | null>(null);
   const { width, height } = useWindowSize();
+  const { resetTrack } = useNowPlayingContext();
 
   const recording = recordings.find((r) => r.id === id);
 
@@ -68,6 +70,7 @@ const Recording: React.FC = () => {
           <button
             className="flex items-center text-black"
             onClick={() => {
+              resetTrack();
               router.push("/recordings");
             }}
           >
@@ -104,6 +107,7 @@ const Recording: React.FC = () => {
             width={100}
             height={100}
             isRecording={true}
+            className="w-full"
           />
         </div>
       </main>

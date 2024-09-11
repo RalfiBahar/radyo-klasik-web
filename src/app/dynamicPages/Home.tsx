@@ -16,10 +16,6 @@ import { useEffect } from "react";
 export default function Home() {
   const { isPlaying, nowPlaying } = useNowPlayingContext();
 
-  useEffect(() => {
-    console.log(isPlaying);
-  }, [isPlaying]);
-
   return (
     <div
       className="min-h-screen bg-[#68EAAC] flex flex-col"

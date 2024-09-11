@@ -1,19 +1,21 @@
 import React from "react";
-import { IconButton, Modal } from ".";
+import { ChatModal, IconButton, Modal } from ".";
 import { useWindowSize } from "../hooks/useWindowSize";
 import Link from "next/link";
 import useAnnouncement from "../hooks/useAnnouncement";
+import { useNowPlayingContext } from "../context/NowPlayingContext";
 
 const MobileFooter: React.FC = ({}) => {
   const { width, height } = useWindowSize();
   const { announcement, loading, error } = useAnnouncement();
+  const { resetTrack } = useNowPlayingContext();
 
   return (
     <footer
       className="bg-[#EEEEEE] rounded-t-3xl w-full absolute bottom-0 flex items-center justify-between z-50"
       style={{ height: `${height * 0.15}px` }}
     >
-      <Link href="/recordings">
+      <Link href="/recordings" onClick={resetTrack}>
         <IconButton
           imgSrc="/archive.svg"
           imgAlt="Archive"
@@ -32,13 +34,7 @@ const MobileFooter: React.FC = ({}) => {
         content={announcement || "No announcements found."}
       />
 
-      <IconButton
-        imgSrc="/chat.svg"
-        imgAlt="Chat"
-        imgWidth={width * 0.1}
-        imgHeight={width * 0.1}
-        label="Chat"
-      />
+      <ChatModal onFooter={true} />
     </footer>
   );
 };
