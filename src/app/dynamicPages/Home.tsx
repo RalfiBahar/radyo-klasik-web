@@ -3,6 +3,7 @@ import Image from "next/image";
 import {
   Album,
   Announcements,
+  ChatModal,
   Clock,
   Header,
   Modal,
@@ -59,6 +60,9 @@ export default function Home() {
 
         <div className="absolute right-64 bottom-40">
           <Clock />
+        </div>
+        <div className="absolute right-64 top-32">
+          <ChatModal />
         </div>
       </main>
 
