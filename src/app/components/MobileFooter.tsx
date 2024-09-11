@@ -12,7 +12,7 @@ const MobileFooter: React.FC = ({}) => {
 
   return (
     <footer
-      className="bg-[#EEEEEE] rounded-t-3xl w-full absolute bottom-0 flex items-center justify-between z-50"
+      className="bg-[#EEEEEE] rounded-t-3xl w-full fixed bottom-0 flex items-center justify-between z-50"
       style={{ height: `${height * 0.15}px` }}
     >
       <Link href="/recordings" onClick={resetTrack}>

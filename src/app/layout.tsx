@@ -7,7 +7,7 @@ import { NowPlayingProvider } from "./context/NowPlayingContext";
 const questrial = Questrial({ subsets: ["latin"], weight: "400" });
 
 export const metadata: Metadata = {
-  title: "Radio Klasik",
+  title: "Radyo Klasik",
   description: "Herkes için klasik müzik!",
 };
 
@@ -20,7 +20,9 @@ export default function RootLayout({
     <RecordingsProvider>
       <NowPlayingProvider>
         <html lang="en">
-          <body className={questrial.className}>{children}</body>
+          <body className={questrial.className} style={{ overflow: "hidden" }}>
+            {children}
+          </body>
         </html>
       </NowPlayingProvider>
     </RecordingsProvider>

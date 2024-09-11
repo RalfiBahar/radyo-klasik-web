@@ -38,7 +38,7 @@ const PastProgramsMobile: React.FC = () => {
       <header className="flex justify-center items-center px-4 py-4 bg-transparent relative z-10">
         <div className="flex items-center">
           <Image
-            src="logo.svg"
+            src="/logo.svg"
             alt="Logo"
             width={width * 0.3 || 60}
             height={40}
