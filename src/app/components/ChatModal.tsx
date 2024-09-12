@@ -71,7 +71,9 @@ const ChatModal: React.FC<ChatModalProps> = ({ onFooter = false }) => {
 
       {isOpen && (
         <div
-          className="fixed inset-0 flex items-center justify-center z-50"
+          className={`fixed inset-0 flex items-center justify-center z-50 ${
+            onFooter ? "-translate-y-32" : ""
+          }`}
           onClick={toggleModal}
         >
           <div
