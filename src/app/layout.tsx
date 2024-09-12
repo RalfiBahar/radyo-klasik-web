@@ -4,6 +4,7 @@ import "./globals.css";
 import { Questrial } from "next/font/google";
 import { RecordingsProvider } from "./context/RecordingsContext";
 import { NowPlayingProvider } from "./context/NowPlayingContext";
+import { Analytics } from "@vercel/analytics/react";
 
 const questrial = Questrial({ subsets: ["latin"], weight: "400" });
 
@@ -52,6 +53,7 @@ export default function RootLayout({
           </Head>
           <body className={questrial.className} style={{ overflow: "hidden" }}>
             {children}
+            <Analytics />
           </body>
         </html>
       </NowPlayingProvider>
