@@ -5,11 +5,11 @@ const Announcements = () => {
   const { announcement, loading, error } = useAnnouncement();
 
   if (loading) {
-    return <p>Loading announcement...</p>;
+    return null; //<p>Loading announcement...</p>;
   }
 
   if (error) {
-    return <p>Error: {error}</p>;
+    return null; //<p>Error: {error}</p>;
   }
 
   return (
