@@ -9,6 +9,7 @@ import {
   Modal,
   NowPlaying,
   Player,
+  PastProgramsModal,
 } from "../components";
 import { useNowPlayingContext } from "../context/NowPlayingContext";
 import { useEffect } from "react";
@@ -59,6 +60,7 @@ export default function Home() {
         </div>
         <div className="absolute right-64 top-32">
           <ChatModal />
+          {/*<PastProgramsModal />*/}
         </div>
       </main>
 

@@ -13,3 +13,4 @@ export { default as ProgressBar } from "./ProgressBar";
 export { default as BackButton } from "./BackButton";
 export { default as MobileFooter } from "./MobileFooter";
 export { default as ChatModal } from "./ChatModal";
+export { default as PastProgramsModal } from "./PastProgramsModal";

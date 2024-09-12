@@ -58,7 +58,14 @@ const Recording: React.FC = () => {
   };
 
   const streamWithToken = `${process.env.NEXT_PUBLIC_API_URL}/${recording.stream}?token=${token}`;
-  //console.log(streamWithToken);
+
+  const WINDOW_CHANGE_HEIGHT = 750;
+  const albumSize = height && height < WINDOW_CHANGE_HEIGHT ? 150 : 200;
+  const playerSize = height && height < WINDOW_CHANGE_HEIGHT ? 60 : 100;
+  const titleFontSize =
+    height && height < WINDOW_CHANGE_HEIGHT ? "text-xl" : "text-3xl";
+  const artistFontSize =
+    height && height < WINDOW_CHANGE_HEIGHT ? "text-base" : "text-xl";
 
   return (
     <div className="min-h-screen flex flex-col relative bg-cover bg-no-repeat">
@@ -96,21 +103,23 @@ const Recording: React.FC = () => {
         <Image
           src={songData.thumb}
           alt={recording.title}
-          width={200}
-          height={200}
+          width={albumSize}
+          height={albumSize}
           className="rounded-lg mb-6"
         />
 
         <div className="flex flex-col items-center w-full">
-          <h1 className="text-3xl font-bold mb-4 text-black">
+          <h1 className={`${titleFontSize} font-bold mb-4 text-black`}>
             {recording.title}
           </h1>
-          <p className="text-xl text-black0 mb-4">{recording.artist}</p>
+          <p className={`${artistFontSize} text-black mb-4`}>
+            {recording.artist}
+          </p>
           {/* Pass audioUrl as a prop to Player */}
           <Player
             audioUrl={streamWithToken}
-            width={100}
-            height={100}
+            width={playerSize}
+            height={playerSize}
             isRecording={true}
             className="w-full"
           />
