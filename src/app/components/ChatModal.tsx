@@ -23,6 +23,7 @@ const ChatModal: React.FC<ChatModalProps> = ({ onFooter = false }) => {
     if (username) {
       setIsNameSet(true);
     }
+    fetchMessages();
   }, []);
 
   useEffect(() => {
@@ -46,6 +47,7 @@ const ChatModal: React.FC<ChatModalProps> = ({ onFooter = false }) => {
 
   const toggleModal = () => {
     setIsOpen(!isOpen);
+    fetchMessages();
   };
 
   const scrollToBottom = () => {
