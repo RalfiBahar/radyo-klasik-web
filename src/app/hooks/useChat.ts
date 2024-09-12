@@ -20,7 +20,7 @@ const useChat = () => {
       );
       if (response.ok) {
         const data = await response.json();
-        console.log(data.chats);
+        //console.log(data.chats);
         setMessages(data.chats);
       } else {
         setError("Failed to fetch messages.");

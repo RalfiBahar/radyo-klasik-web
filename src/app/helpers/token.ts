@@ -51,7 +51,7 @@ export async function fetchWithAuth(
     const data: TokenResponse = await response.json();
 
     if (data.error === "token_expired") {
-      console.log("Token expired, refreshing...");
+      //console.log("Token expired, refreshing...");
       token = await getToken();
 
       if (token) {
@@ -72,7 +72,7 @@ export async function fetchWithAuth(
   }
 
   if (!response.ok && retries > 0 && response.status !== 401) {
-    console.log(`Retrying request... ${retries} attempts left`);
+    //console.log(`Retrying request... ${retries} attempts left`);
     await new Promise((res) => setTimeout(res, delay));
     return fetchWithAuth(url, options, retries - 1, delay * 2);
   }

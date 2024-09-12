@@ -58,7 +58,7 @@ const Recording: React.FC = () => {
   };
 
   const streamWithToken = `${process.env.NEXT_PUBLIC_API_URL}/${recording.stream}?token=${token}`;
-  console.log(streamWithToken);
+  //console.log(streamWithToken);
 
   return (
     <div className="min-h-screen flex flex-col relative bg-cover bg-no-repeat">
