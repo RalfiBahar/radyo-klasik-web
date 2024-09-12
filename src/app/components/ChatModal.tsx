@@ -19,6 +19,13 @@ const ChatModal: React.FC<ChatModalProps> = ({ onFooter = false }) => {
   const { messages, fetchMessages, sendMessage, error } = useChat();
 
   useEffect(() => {
+    const username = Cookies.get("username");
+    if (username) {
+      setIsNameSet(true);
+    }
+  }, []);
+
+  useEffect(() => {
     if (isNameSet) {
       fetchMessages();
     }
@@ -26,7 +33,7 @@ const ChatModal: React.FC<ChatModalProps> = ({ onFooter = false }) => {
 
   const handleNameSubmit = () => {
     const username = `${firstName} ${lastName}`;
-    Cookies.set("username", username);
+    Cookies.set("username", username, { expires: 30 });
     setIsNameSet(true);
   };
 
