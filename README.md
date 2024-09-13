@@ -1,36 +1,19 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Classical Music Radio
 
-## Getting Started
+![Classical Music Radio Banner](./public/radyo-klasik-banner.png)
 
-First, run the development server:
+## [Check Out Backend and Mobile](https://github.com/RalfiBahar/RadyoKlasik)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## About Us
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Welcome to our online radio station for classical music lovers! We are a father and son duo passionate about sharing the beauty of classical music with enthusiasts from around the world. Tune in 24/7 for a wide range of classical music pieces, including live performances, iconic symphonies, and hidden gems.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Live Sessions
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Join us for live interactive sessions every Sunday from 10:00 AM to 12:00 PM, where we engage with listeners, share our favorite pieces, and discuss various aspects of classical music.
 
-## Learn More
+Feel free to connect with us via email or during our live shows. We look forward to sharing our love for classical music with you!
 
-To learn more about Next.js, take a look at the following resources:
+### Contact Us
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+E-Mail: [radyoklasik01@gmail.com](mailto:radyoklasik01@gmail.com)
