@@ -63,6 +63,14 @@ const Player: React.FC<PlayerProps> = ({
     if (isPlaying) {
       audioRef.current.pause();
     } else {
+      if (!isRecording) {
+        // If it's not a recording, reset the stream for live playback
+        //console.log("loading from scratch");
+        audioRef.current.currentTime = 0;
+        audioRef.current.src = audioUrl;
+        audioRef.current.load();
+      }
+
       audioRef.current.play().catch((error: Error) => {
         console.error("Error playing audio:", error);
       });
@@ -70,7 +78,7 @@ const Player: React.FC<PlayerProps> = ({
   };
 
   const handleSliderChange = (event: Event, value: number | number[]) => {
-    if (audioRef.current) {
+    if (audioRef.current && isRecording) {
       const newValue = Array.isArray(value) ? value[0] : value;
       audioRef.current.currentTime = newValue;
       setProgress(newValue);
