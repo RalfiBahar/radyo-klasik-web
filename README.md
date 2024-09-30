@@ -2,7 +2,9 @@
 
 ![Classical Music Radio Banner](./public/radyo-klasik-banner.png)
 
-## [Check Out Backend and Mobile](https://github.com/RalfiBahar/RadyoKlasik)
+## [Check Out Backend](https://github.com/RalfiBahar/RadyoKlasik/tree/main/RadyoKlasikServer)
+
+## [Check Out Mobile](https://github.com/RalfiBahar/RadyoKlasik/tree/main/RadyoKlasikMobile)
 
 ## About Us
 
