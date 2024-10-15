@@ -5,6 +5,7 @@ import { Questrial } from "next/font/google";
 import { RecordingsProvider } from "./context/RecordingsContext";
 import { NowPlayingProvider } from "./context/NowPlayingContext";
 import { Analytics } from "@vercel/analytics/react";
+import { GoogleAnalytics } from "@next/third-parties/google";
 
 const questrial = Questrial({ subsets: ["latin"], weight: "400" });
 
@@ -55,6 +56,7 @@ export default function RootLayout({
             {children}
             <Analytics />
           </body>
+          <GoogleAnalytics gaId="G-STXF4TF3YF" />
         </html>
       </NowPlayingProvider>
     </RecordingsProvider>
