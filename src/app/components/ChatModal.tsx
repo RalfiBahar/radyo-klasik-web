@@ -14,6 +14,7 @@ const ChatModal: React.FC<ChatModalProps> = ({ onFooter = false }) => {
   const [lastName, setLastName] = useState("");
   const [messageContent, setMessageContent] = useState("");
   const [isNameSet, setIsNameSet] = useState(false);
+  const [nameError, setNameError] = useState(""); // New state for name validation error
   const messagesEndRef = useRef<HTMLDivElement | null>(null);
 
   const { messages, fetchMessages, sendMessage, error } = useChat();
@@ -33,9 +34,20 @@ const ChatModal: React.FC<ChatModalProps> = ({ onFooter = false }) => {
   }, [isNameSet]);
 
   const handleNameSubmit = () => {
-    const username = `${firstName} ${lastName}`;
+    // Trim the inputs to remove leading/trailing whitespace
+    const trimmedFirstName = firstName.trim();
+    const trimmedLastName = lastName.trim();
+
+    // Validation: Check if both first name and last name are provided
+    if (!trimmedFirstName || !trimmedLastName) {
+      setNameError("Please enter both first name and last name.");
+      return;
+    }
+
+    const username = `${trimmedFirstName} ${trimmedLastName}`;
     Cookies.set("username", username, { expires: 30 });
     setIsNameSet(true);
+    setNameError(""); // Clear any existing error
   };
 
   const handleSendMessage = () => {
@@ -106,7 +118,7 @@ const ChatModal: React.FC<ChatModalProps> = ({ onFooter = false }) => {
                   placeholder="First Name"
                   value={firstName}
                   onChange={(e) => setFirstName(e.target.value)}
-                  className="border p-2 rounded w-full mb-4"
+                  className="border p-2 rounded w-full mb-2"
                 />
                 <input
                   type="text"
@@ -115,6 +127,8 @@ const ChatModal: React.FC<ChatModalProps> = ({ onFooter = false }) => {
                   onChange={(e) => setLastName(e.target.value)}
                   className="border p-2 rounded w-full mb-4"
                 />
+                {/* Display validation error if any */}
+                {nameError && <p className="text-red-500 mb-4">{nameError}</p>}
                 <button
                   onClick={handleNameSubmit}
                   className="bg-blue-500 text-white px-4 py-2 rounded"
