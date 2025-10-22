@@ -29,7 +29,8 @@ const Header = () => {
             href="http://www.radyoklasik.online"
             className="text-sm md:text-lg"
           >
-            HERKES İÇİN KLASİK MÜZİK
+            {/* HERKES İÇİN KLASİK MÜZİK */}
+            CLASSICAL MUSIC FOR EVERYONE
           </a>
         </div>
         <Modal />

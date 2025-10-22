@@ -37,14 +37,16 @@ export default function Home() {
           {/* Live Broadcast Information */}
           <div className="border-2 border-black p-4 mt-6 inline-block w-32 md:w-40 lg:w-48">
             <h3 className="text-base md:text-lg lg:text-2xl font-bold">
-              CANLI YAYIN
+              {/* CANLI YAYIN */}
+              LIVE NOW
             </h3>
           </div>
           <p className="mt-2 text-3xl md:text-4xl lg:text-5xl font-bold">
             MORNING <br /> DELIGHT
           </p>
           <p className="mt-1 text-base md:text-lg">
-            HER PAZAR SABAHI <br /> 10:00-12:00
+            {/* HER PAZAR SABAHI */}
+            EVERY SUNDAY MORNING <br /> 10:00-12:00
           </p>
         </div>
 
